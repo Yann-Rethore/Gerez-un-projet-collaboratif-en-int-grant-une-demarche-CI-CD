@@ -23,7 +23,7 @@ jobs:
     - name: Build backend (Spring Boot)
       run: |
         cd back
-        ./mvn clean install
+        mvn clean install
 
     - name: Setup Node.js pour Angular
       uses: actions/setup-node@v3
