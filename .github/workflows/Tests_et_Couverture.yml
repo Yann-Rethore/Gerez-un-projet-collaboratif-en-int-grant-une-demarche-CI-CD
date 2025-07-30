@@ -11,41 +11,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Récupération du code
     - name: Checkout du code
       uses: actions/checkout@v3
 
-    ### 📦 Build et tests Java (Spring Boot) ###
+    # Installation de Java
     - name: Setup JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
 
-    - name: Build et tests backend (Spring Boot)
+    # Build & test du backend (Spring Boot)
+    - name: Build et tests backend
       run: |
         cd back
         mvn test
         mvn jacoco:report
 
-        - name: Upload rapport de couverture Java
+    # Couverture backend
+    - name: Upload rapport de couverture Java
       uses: actions/upload-artifact@v3
       with:
         name: couverture-java
         path: back/target/site/jacoco/
 
-    ### 🌐 Tests Angular ###
+    # Installation de Node.js
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
-    - name: Install & test frontend (Angular)
+    # Tests Angular + couverture
+    - name: Install & test frontend
       run: |
         cd front
         npm install
         npm run test -- --watch=false --code-coverage
 
-        - name: Upload rapport de couverture Angular
+    # Couverture frontend
+    - name: Upload rapport de couverture Angular
       uses: actions/upload-artifact@v3
       with:
         name: couverture-angular
