@@ -31,7 +31,7 @@ jobs:
 
     # Couverture backend
     - name: Upload rapport de couverture Java
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  
       with:
         name: couverture-java
         path: back/target/site/jacoco/
@@ -42,16 +42,16 @@ jobs:
       with:
         node-version: '18'
 
-    # Tests Angular + couverture
+   # Tests Angular + couverture
     - name: Install & test frontend
       run: |
         cd front
         npm install
-        npm run test -- --watch=false --code-coverage
+        npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
 
-    # Couverture frontend
+   # Couverture frontend
     - name: Upload rapport de couverture Angular
       uses: actions/upload-artifact@v4
       with:
-        name: couverture-java
-        path: build/reports/jacoco/test/html
+        name: couverture-angular
+        path: front/coverage/    
