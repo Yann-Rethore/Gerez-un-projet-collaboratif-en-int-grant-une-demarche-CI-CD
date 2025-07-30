@@ -47,7 +47,7 @@ jobs:
       run: |
         cd front
         npm install
-        npm run test -- --watch=false --code-coverage
+        npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
 
    # Couverture frontend
     - name: Upload rapport de couverture Angular
