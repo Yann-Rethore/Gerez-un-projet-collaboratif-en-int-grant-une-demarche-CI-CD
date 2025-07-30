@@ -36,6 +36,16 @@ jobs:
         name: couverture-java
         path: back/target/site/jacoco/
 
+    # Couverture backend pour affichage dans github actaion
+    - name: Report Jacoco (back)
+      uses: dorny/test-reporter@v2
+      if: ${{ always() }}
+      with:
+        name: Tests Java
+        path: target/test-reports/junit.xml
+        reporter: java-junit
+        use-actions-summary: true
+
     # Installation de Node.js
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -55,3 +65,13 @@ jobs:
       with:
         name: couverture-angular
         path: front/coverage/    
+
+     # Couverture frontend pour affichage dans github actaion
+    - name: Report Karma (front)
+      uses: dorny/test-reporter@v2
+      if: ${{ always() }}
+      with:
+        name: Tests Angular
+        path: coverage/karma/junit-report.xml
+        reporter: jest-junit # ou mocha-junit selon ton setup
+        use-actions-summary: true
