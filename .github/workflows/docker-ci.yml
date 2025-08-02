@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./back
-          file: ./bobapp/backend/Dockerfile.backend
+          file: ./back/Dockerfile.backend
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta-backend.outputs.tags }}
           annotations: ${{ steps.meta-backend.outputs.annotations }}
@@ -51,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./front
-          file: ./bobapp/frontend/Dockerfile.frontend
+          file: ./front/Dockerfile.frontend
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta-frontend.outputs.tags }}
           annotations: ${{ steps.meta-frontend.outputs.annotations }}
