@@ -1,4 +1,10 @@
-name: CI - Tests et Couverture
+name: Test and Cover
+
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
 
 on:
   push:
@@ -55,3 +61,12 @@ jobs:
       with:
         name: couverture-angular
         path: front/coverage/    
+
+  # affichage des resultats
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: |
+                back/target/surefire-reports/*.xml
+                front/test-report.xml
