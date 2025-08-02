@@ -39,8 +39,8 @@ jobs:
       - name: Build and push backend
         uses: docker/build-push-action@v6
         with:
-          context: ./back
-          file: ./back/Dockerfile.backend
+          context: ./bobapp/backend
+          file: ./bobapp/backend/Dockerfile.backend
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta-backend.outputs.tags }}
           annotations: ${{ steps.meta-backend.outputs.annotations }}
@@ -50,8 +50,8 @@ jobs:
       - name: Build and push frontend
         uses: docker/build-push-action@v6
         with:
-          context: ./front
-          file: ./front/Dockerfile.frontend
+          context: ./bobapp/frontend
+          file: ./bobapp/frontend/Dockerfile.frontend
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta-frontend.outputs.tags }}
           annotations: ${{ steps.meta-frontend.outputs.annotations }}
