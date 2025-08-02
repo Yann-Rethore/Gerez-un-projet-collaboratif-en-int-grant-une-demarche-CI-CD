@@ -42,7 +42,7 @@ jobs:
         run: |
           cd front
           npm ci
-          npm run test -- --coverage
+          npm run test -- --code-coverage
           cd ..
 
       - name: Run SonarQube analysis
