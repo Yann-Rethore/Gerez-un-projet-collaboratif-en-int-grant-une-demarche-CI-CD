@@ -27,14 +27,14 @@ jobs:
         id: meta-backend
         uses: docker/metadata-action@v5
         with:
-          images: ${{ vars.DOCKER_USERNAME }}/backend
+          images: ${{ vars.DOCKER_USERNAME }}/bobapp/backend
 
       # Metadata for frontend
       - name: Extract metadata for frontend
         id: meta-frontend
         uses: docker/metadata-action@v5
         with:
-          images: ${{ vars.DOCKER_USERNAME }}/frontend
+          images: ${{ vars.DOCKER_USERNAME }}/bobapp/frontend
 
       - name: Build and push backend
         uses: docker/build-push-action@v6
