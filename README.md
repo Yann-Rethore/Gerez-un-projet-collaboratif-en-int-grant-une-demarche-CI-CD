@@ -46,6 +46,21 @@ Launch the tests:
 
 > mvn clean install
 
+### Sonar
+
+## Qualité du projet 
+
+Lien vers le sonar du projet :
+https://sonarcloud.io/summary/overall?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&branch=main
+
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=coverage)](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=coverage)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=code_smells)](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=code_smells)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=bugs)](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=bugs)
+[![Sécurité](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=security_rating)](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=security_rating)
+
+
+
 ### Docker
 
 Build the container:
