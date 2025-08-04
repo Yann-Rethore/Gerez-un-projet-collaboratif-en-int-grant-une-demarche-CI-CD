@@ -58,10 +58,13 @@ https://sonarcloud.io/summary/overall?id=Yann-Rethore_Gerez-un-projet-collaborat
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=code_smells)](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=code_smells)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=bugs)](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=bugs)
 [![Sécurité](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=security_rating)](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=security_rating)
-[![Security Hotspots](https://sonarcloud.io/api/project_badges/measure?project=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=security_hotspots)](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=security_hotspots)
 
 
-L'indicateur de sécurité n'est pour l'instant pas fiable, aucune sécurité n'est réellement présente dans l'application
+
+L'indicateur de sécurité n'est pour l'instant pas fiable, aucune sécurité n'est réellement présente dans l'application.
+
+Par contre il existe des hotspot sur la partie sécurité :
+[Consulter les Security Hotspots sur SonarCloud](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=security_hotspots)
 
 
 ### Docker
