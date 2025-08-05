@@ -20,7 +20,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-     steps:
+    steps:
     # Récupération du code
     - name: Checkout du code
       uses: actions/checkout@v3
@@ -73,7 +73,7 @@ jobs:
           mvn clean verify
           cd ..
 
-        - name: Analyse SonarQube
+      - name: Analyse SonarQube
         uses: SonarSource/sonarqube-scan-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
