@@ -73,7 +73,13 @@ jobs:
           mvn clean verify
           cd ..
 
+      - name: Install SonarQube Scanner
+        run: |
+            npm install -g sonar-scanner
+
       - name: SonarQube Scan (back)
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           sonar-scanner \
           -Dsonar.projectKey=${{ secrets.SONAR_ORGANISATION_KEY}}-bobapp-back \
