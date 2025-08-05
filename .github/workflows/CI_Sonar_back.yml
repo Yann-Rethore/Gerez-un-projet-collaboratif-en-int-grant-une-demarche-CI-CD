@@ -73,8 +73,13 @@ jobs:
           mvn clean verify
           cd ..
 
-      - name: Analyse SonarQube
-        uses: SonarSource/sonarqube-scan-action@v2
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: Run SonarQube analysis
+        run: |
+          sonar-scanner \
+          -Dsonar.projectKey=bobapp-back \
+          -Dsonar.projectName=bobapp-back \
+          -Dsonar.sources=back/src \
+          -Dsonar.java.binaries=back/target/classes \
+          -Dsonar.jacoco.reportPaths=back/target/site/jacoco/jacoco.xml \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
