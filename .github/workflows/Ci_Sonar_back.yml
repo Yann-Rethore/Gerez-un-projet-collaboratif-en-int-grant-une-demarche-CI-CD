@@ -1,0 +1,80 @@
+name: Ci Sonar back
+
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'back/**'
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'back/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+     steps:
+    # Récupération du code
+    - name: Checkout du code
+      uses: actions/checkout@v3
+
+    # Installation de Java
+    - name: Setup JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+
+    # Build & test du backend (Spring Boot)
+    - name: Build et tests backend
+      run: |
+        cd back
+        mvn test
+        mvn jacoco:report
+
+    # Couverture backend
+    - name: Upload rapport de couverture Java
+      uses: actions/upload-artifact@v4  
+      with:
+        name: couverture-java
+        path: back/target/site/jacoco/
+
+  sonar-analysis:
+    name: Unified SonarQube Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'zulu'
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Build backend and generate test reports
+        run: |
+          cd back
+          mvn clean verify
+          cd ..
+
+        - name: Analyse SonarQube
+        uses: SonarSource/sonarqube-scan-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
