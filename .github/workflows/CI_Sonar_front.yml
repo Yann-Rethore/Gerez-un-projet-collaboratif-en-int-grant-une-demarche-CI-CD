@@ -80,8 +80,8 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner \
           cd ..
+          sonar-scanner \
           -Dsonar.projectKey=bobapp-front \
           -Dsonar.sources=front/src \
           -Dsonar.projectName=bobapp-front \
