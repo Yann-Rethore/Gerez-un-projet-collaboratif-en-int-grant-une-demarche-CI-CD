@@ -87,4 +87,5 @@ jobs:
           -Dsonar.javascript.lcov.reportPaths=front/coverage/lcov.info \
           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
       
