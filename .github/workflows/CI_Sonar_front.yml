@@ -83,6 +83,7 @@ jobs:
           cd ..
           sonar-scanner \
           -Dsonar.projectKey=bobapp-front \
+          -Dsonar.organization=${{ secrets.SONAR_ORGANISATION_KEY }} \
           -Dsonar.sources=front/src \
           -Dsonar.projectName=bobapp-front \
           -Dsonar.javascript.lcov.reportPaths=front/coverage/lcov.info \
