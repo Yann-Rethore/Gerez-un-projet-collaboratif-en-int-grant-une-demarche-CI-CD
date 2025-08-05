@@ -6,7 +6,7 @@ on:
       - main
   pull_request:
   workflow_run:
-    workflows: ["SonarQube"]
+    workflows: ["Simple build","Test and Cover","SonarQube"]
     types:
       - completed
 
