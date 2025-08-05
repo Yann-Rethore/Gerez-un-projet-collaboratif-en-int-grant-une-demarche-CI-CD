@@ -80,5 +80,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          sonar-scanner \
+          -Dsonar.projectKey=bobapp-front \
+          -Dsonar.sources=front/src \
+          -Dsonar.projectName=bobapp-front \
+          -Dsonar.javascript.lcov.reportPaths=front/coverage/lcov.info \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       
