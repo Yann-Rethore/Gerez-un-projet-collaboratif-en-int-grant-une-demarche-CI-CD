@@ -1,4 +1,4 @@
-name: Build and Push Docker Image Front
+name: Build and Push Docker Front Image 
 
 on:
   push:
@@ -7,8 +7,6 @@ on:
     paths:
       - 'front/**'
   pull_request:
-    types:
-      - completed
     paths:
       - 'front/**'
 
