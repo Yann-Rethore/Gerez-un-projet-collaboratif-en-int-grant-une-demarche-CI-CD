@@ -5,7 +5,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_run:
-    workflows: ["Test and cover"]
+    workflows: ["Test and Cover"]
     types:
       - completed
 
