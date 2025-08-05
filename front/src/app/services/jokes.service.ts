@@ -24,3 +24,5 @@ export class JokesService {
     return this.subject.asObservable();
   }
 }
+
+/* commentaire à supprimer pour test workflow front V2 */
