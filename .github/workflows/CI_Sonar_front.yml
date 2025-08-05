@@ -1,0 +1,84 @@
+name: Ci Sonar front
+
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'front/**'
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'front/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Récupération du code
+    - name: Checkout du code
+      uses: actions/checkout@v4
+
+      # Installation de Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+   # Tests Angular + couverture
+    - name: Install & test frontend
+      run: |
+        cd front
+        npm install
+        npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
+
+   # Couverture frontend
+    - name: Upload rapport de couverture Angular
+      uses: actions/upload-artifact@v4
+      with:
+        name: couverture-angular
+        path: front/coverage/  
+        
+  sonar-analysis:
+    name: Unified SonarQube Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node 
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+  
+      - name: Build frontend and generate coverage
+        run: |
+          cd front
+          npm ci
+          npm run test -- --code-coverage
+          cd ..
+
+      - name: Install SonarQube Scanner
+        run: |
+            npm install -g sonar-scanner
+
+      - name: Run SonarQube analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      
