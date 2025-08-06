@@ -58,3 +58,5 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v4
         env: 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: yannRethore-bobApp-backEnd
+          SONAR_ORGANIZATION: mammuth129
