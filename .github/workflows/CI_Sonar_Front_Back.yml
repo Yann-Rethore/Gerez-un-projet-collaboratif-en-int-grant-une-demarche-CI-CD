@@ -51,13 +51,13 @@ jobs:
             npm install -g sonar-scanner
 
       - name: Run SonarQube analysis
+        working-directory: ${{ github.workspace }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           sonar-scanner \
           -Dsonar.projectKey=${{ secrets.SONAR_KEY }} \
           -Dsonar.projectName=BobApp \
-          -Dsonar.projectBaseDir=. \
           -Dsonar.sources=back/src,front/src \
           -Dsonar.tests=front/src \
           -Dsonar.java.binaries=back/target/classes \
