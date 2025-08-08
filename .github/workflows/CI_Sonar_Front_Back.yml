@@ -54,4 +54,12 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          sonar-scanner \
+          -Dsonar.projectKey=${{ secrets.SONAR_KEY }} \
+          -Dsonar.projectName=BobApp \
+          -Dsonar.sources=back/src,front/src \
+          -Dsonar.tests=front/src \
+          -Dsonar.java.binaries=back/target/classes \
+          -Dsonar.javascript.lcov.reportPaths=front/coverage/lcov.info \
+          -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
