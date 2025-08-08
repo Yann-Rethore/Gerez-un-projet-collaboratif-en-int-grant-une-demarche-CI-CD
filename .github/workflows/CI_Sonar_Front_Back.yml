@@ -57,6 +57,7 @@ jobs:
           sonar-scanner \
           -Dsonar.projectKey=${{ secrets.SONAR_KEY }} \
           -Dsonar.projectName=BobApp \
+          -Dsonar.projectBaseDir=. \
           -Dsonar.sources=back/src,front/src \
           -Dsonar.tests=front/src \
           -Dsonar.java.binaries=back/target/classes \
