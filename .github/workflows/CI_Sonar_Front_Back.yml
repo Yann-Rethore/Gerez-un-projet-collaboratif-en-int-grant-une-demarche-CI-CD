@@ -28,7 +28,7 @@ jobs:
         working-directory: front
         run: |
           npm ci
-          npm run test -- --coverage
+          npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
 
       # 🟨 BACKEND
       - name: Set up Java
