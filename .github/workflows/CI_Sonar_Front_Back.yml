@@ -1,44 +1,48 @@
-name: SonarQube
+name: SonarCloud Analysis
+
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [ main ]
 
 jobs:
-  sonar-analysis:
-    name: Unified SonarQube Analysis
+  sonarcloud:
+    name: Analyze with SonarCloud
     runs-on: ubuntu-latest
+
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      # 🟦 FRONTEND
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          java-version: 17
-          distribution: 'zulu'
+          node-version: 18
 
-      - name: Install Node (pour le frontend)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install front dependencies
+      - name: Install and test Angular
         working-directory: front
         run: |
-            npm install
-            npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
+          npm ci
+          npm run test -- --coverage
 
-      - name: Build back-end
+      # 🟨 BACKEND
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build and test Java
         working-directory: back
         run: |
-            mvn clean install
-            mvn verify
+          mvn clean verify
 
+      # 🔍 SONAR ANALYSIS
       - name: Run SonarCloud analysis
         run: |
-          npx @sonar/scan \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
-      
+          npx @sonar/scan -Dsonar.login=${{ secrets.SONAR_TOKEN }}
