@@ -36,34 +36,9 @@ jobs:
             mvn clean install
             mvn verify
 
-      - name: Install SonarQube Scanner
+      - name: Run SonarCloud analysis
         run: |
-          npm install -g sonar-scanner
+          npx @sonar/scan \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }
 
-      - name: Run SonarQube analysis for front
-        working-directory: front
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=${{ secrets.SONAR_KEY }} \
-            -Dsonar.projectName=BobApp \
-            -Dsonar.sources=src \
-            -Dsonar.tests=src \
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-            -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            -Dsonar.host.url=https://sonarcloud.io
-
-      - name: Run SonarQube analysis for back
-        working-directory: back
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=${{ secrets.SONAR_KEY }}
-            -Dsonar.projectName=BobApp \
-            -Dsonar.sources=src \
-            -Dsonar.java.binaries=target/classes \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            -Dsonar.host.url=https://sonarcloud.io
+      
