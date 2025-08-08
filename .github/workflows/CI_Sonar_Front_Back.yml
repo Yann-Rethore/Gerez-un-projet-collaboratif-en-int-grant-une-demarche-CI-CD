@@ -41,8 +41,9 @@ jobs:
       - name: Build frontend and generate coverage
         run: |
           cd front
-          npm ci
-          npm run test -- --code-coverage
+
+          npm install
+          npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
           cd ..
 
       - name: Install SonarQube Scanner
