@@ -28,7 +28,7 @@ jobs:
         working-directory: front
         run: |
             npm install
-             npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
+            npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
 
       - name: Build back-end
         working-directory: back
@@ -36,7 +36,12 @@ jobs:
             mvn clean install
             mvn verify
 
+      - name: Install SonarQube Scanner
+        run: |
+          npm install -g sonar-scanner
+
       - name: Run SonarQube analysis for front
+        working-directory: front
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
@@ -50,12 +55,13 @@ jobs:
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
       - name: Run SonarQube analysis for back
+        working-directory: back
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=your_project_key \
-            -Dsonar.projectName=your_project_name \
+            -Dsonar.projectKey=${{ secrets.SONAR_KEY }}
+            -Dsonar.projectName=BobApp \
             -Dsonar.sources=back/src \
             -Dsonar.java.binaries=back/target/classes \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
