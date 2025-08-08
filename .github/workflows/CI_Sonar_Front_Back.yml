@@ -27,13 +27,13 @@ jobs:
       - name: Install front dependencies
         working-directory: front
         run: |
-            npm ci
+            npm install
             npm run test -- --watch=false --code-coverage --browsers ChromeHeadless
 
       - name: Build back-end
         working-directory: back
         run: |
-            mvn ci
+            mvn clean install
             mvn verify
 
       - name: Run SonarCloud analysis
