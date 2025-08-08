@@ -26,4 +26,4 @@ export class JokesService {
 }
 
 
-/* commentaire à supprimer pour test workflow Front 2 */
+/* commentaire à supprimer pour test workflow Front  */
