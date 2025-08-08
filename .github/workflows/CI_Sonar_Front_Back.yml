@@ -39,6 +39,6 @@ jobs:
       - name: Run SonarCloud analysis
         run: |
           npx @sonar/scan \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
       
