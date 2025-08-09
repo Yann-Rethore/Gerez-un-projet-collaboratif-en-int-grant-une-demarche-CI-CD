@@ -20,13 +20,11 @@ Launch Front-end:
 
 ### Docker
 
-Build the container:
-
-> docker build -t bobapp-front .  
-
-Start the container:
-
-> docker run -p 8080:8080 --name bobapp-front -d bobapp-front
+L'image du front-end est push sur docker hub à chaque merge sur la branche main.
+L'image est récupérable à cette adresse :
+https://hub.docker.com/repository/docker/yannrethore.
+Utilisez Docker Desktop et faite un pull à partir du répertoire frontend. 
+Puis lancer le build.
 
 ## Back-end
 
@@ -44,18 +42,16 @@ Launch Back-end:
 
 Launch the tests:
 
-> mvn clean install
+> mvn verify
 
 
 ### Docker
 
-Build the container:
-
-> docker build -t bobapp-back .  
-
-Start the container:
-
-> docker run -p 8080:8080 --name bobapp-back -d bobapp-back 
+L'image du back-end est push sur docker hub à chaque merge sur la branche main.
+L'image est récupérable à cette adresse :
+https://hub.docker.com/repository/docker/yannrethore.
+Utilisez Docker Desktop et faite un pull à partir du répertoire backend. 
+Puis lancer le build. 
 
 ## Sonar 
 
@@ -74,5 +70,4 @@ https://sonarcloud.io/summary/overall?id=Yann-Rethore_Gerez-un-projet-collaborat
 
 L'indicateur de sécurité n'est pour l'instant pas fiable, aucune sécurité n'est réellement présente dans l'application.
 
-Par contre il existe des hotspot sur la partie sécurité :
-[Consulter les Security Hotspots sur SonarCloud](https://sonarcloud.io/component_measures?id=Yann-Rethore_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD&metric=security_hotspots)
+
