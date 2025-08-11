@@ -1,7 +1,7 @@
 package com.openclassrooms.bobapp;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.fail;  \\ ajout pour test à supprimer
+import static org.junit.jupiter.api.Assertions.fail;  // ajout pour test à supprimer
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
