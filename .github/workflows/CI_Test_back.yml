@@ -28,7 +28,7 @@ jobs:
             back:
               - 'back/**'
 
-  test:
+  CI-Test-front-test:
     runs-on: ubuntu-latest
 
     steps:
