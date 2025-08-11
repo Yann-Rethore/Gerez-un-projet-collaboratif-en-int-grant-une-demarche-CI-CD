@@ -13,8 +13,8 @@ class BobappApplicationTests {
 	@Test
 	void testEnEchec() {
 		int a = 5;
-		int b = ;6
-        assertEquals(a, b, "Test en echec")
+		int b = 6;
+        assertEquals(a, b, "Test en echec");
 	}
 
 }
