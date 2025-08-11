@@ -16,5 +16,6 @@ class BobappApplicationTests {
         fail("Échec forcé pour tester le workflow");
     }
 
+
 }
 
