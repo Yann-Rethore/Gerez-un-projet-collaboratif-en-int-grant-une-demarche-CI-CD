@@ -11,10 +11,10 @@ class BobappApplicationTests {
 	void contextLoads() {
 	}
 
-/*	@Test
+	@Test
     void thisWillDefinitelyFail() {
         fail("Échec forcé pour tester le workflow");
-    }  */
+    }  
 
 }
 
