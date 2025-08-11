@@ -25,6 +25,6 @@ export class JokesService {
   }
 }
 
-//com pour test à supprimer
+//com pour test à supprimer V2
 
 
