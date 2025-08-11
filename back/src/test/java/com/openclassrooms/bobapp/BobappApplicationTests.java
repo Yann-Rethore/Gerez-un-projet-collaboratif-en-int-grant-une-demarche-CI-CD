@@ -1,6 +1,7 @@
 package com.openclassrooms.bobapp;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.fail;  \\ ajout pour test à supprimer
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -11,11 +12,9 @@ class BobappApplicationTests {
 	}
 
 	@Test
-	void testEnEchec() {
-		int a = 5;
-		int b = ;6
-        assertEquals(a, b, "Test en echec")
-	}
+    void thisWillDefinitelyFail() {
+        fail("Échec forcé pour tester le workflow");
+    }
 
 }
 
