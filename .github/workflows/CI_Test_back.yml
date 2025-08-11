@@ -14,27 +14,15 @@ on:
     
 
 jobs:
-  detect-changes:
-    runs-on: ubuntu-latest
-    outputs:
-      back_changed: ${{ steps.filter.outputs.back }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Filter changed files
-        id: filter
-        uses: dorny/paths-filter@v2
-        with:
-          filters: |
-            back:
-              - 'back/**'
-
   CI-Test-back-test:
     runs-on: ubuntu-latest
 
     steps:
     # Récupération du code
-    - name: Checkout du code
+    - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     # Installation de Java
     - name: Setup JDK 11
@@ -46,10 +34,11 @@ jobs:
     # Build & test du backend (Spring Boot)
     - name: Build et tests backend
       run: |
-        if [ "${{ needs.detect-changes.outputs.back_changed }}" != "true" ]; then
-            echo "No back-end changes detected. Skipping tests."
-            exit 0
-          fi
+        git fetch origin main
+        if ! git diff --name-only origin/main | grep -q '^back/'; then
+        echo "No back-end changes detected. Skipping tests."
+        exit 0
+        fi
         cd back
         mvn test
         mvn jacoco:report
