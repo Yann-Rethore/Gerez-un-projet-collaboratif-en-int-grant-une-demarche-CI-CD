@@ -9,16 +9,28 @@ permissions:
 on:
   push:
     branches: [main]
-    paths:
-      - 'front/**'
+    
   pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - 'front/**'
+    types: [main]
+    
 jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      front_changed: ${{ steps.filter.outputs.front }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Filter changed files
+        id: filter
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            front:
+              - 'front/**'
+
   test:
     runs-on: ubuntu-latest
-
+    
     steps:
     # Récupération du code
     - name: Checkout du code
@@ -33,6 +45,10 @@ jobs:
    # Tests Angular + couverture
     - name: Install & test frontend
       run: |
+        if [ "${{ needs.detect-changes.outputs.front_changed }}" != "true" ]; then
+            echo "No front-end changes detected. Skipping tests."
+            exit 0
+          fi
         cd front
         npm install
         npm run test -- --watch=false --code-coverage --browsers ChromeHeadless

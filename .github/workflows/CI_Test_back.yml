@@ -9,14 +9,25 @@ permissions:
 on:
   push:
     branches: [main]
-    paths:
-      - 'back/**'
   pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - 'back/**'
+    branches: [main]
+    
 
 jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      back_changed: ${{ steps.filter.outputs.back }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Filter changed files
+        id: filter
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            back:
+              - 'back/**'
+
   test:
     runs-on: ubuntu-latest
 
@@ -35,6 +46,10 @@ jobs:
     # Build & test du backend (Spring Boot)
     - name: Build et tests backend
       run: |
+        if [ "${{ needs.detect-changes.outputs.back_changed }}" != "true" ]; then
+            echo "No back-end changes detected. Skipping tests."
+            exit 0
+          fi
         cd back
         mvn test
         mvn jacoco:report
