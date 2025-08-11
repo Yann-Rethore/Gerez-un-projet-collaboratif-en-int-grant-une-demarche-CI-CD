@@ -6,9 +6,7 @@ on:
       - main
     paths:
       - 'back/**'
-  pull_request:
-    paths:
-      - 'back/**'
+  
 jobs:
   build:
     runs-on: ubuntu-latest
