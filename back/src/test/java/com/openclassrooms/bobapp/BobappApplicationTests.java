@@ -10,5 +10,12 @@ class BobappApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void testEnEchec() {
+		int a = 5;
+		int b = ;6
+        assertEquals(a, b, "Test en echec")
+	}
+
 }
-/*com pour test workflow back*/
+
